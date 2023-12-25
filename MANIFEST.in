@@ -1,3 +1,0 @@
-include README.md 
-include emfdscore/dictionaries/*
-include emfdscore/template_input.csv

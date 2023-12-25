@@ -4,9 +4,9 @@ import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 import pandas as pd
 import argparse
-from emfdscore.scoring import score_docs, pat_docs
+from emfd.scoring import score_docs, pat_docs
 
-parser = argparse.ArgumentParser(description='Extract moral informtion from textual documents with emfdscore.')
+parser = argparse.ArgumentParser(description='Extract moral informtion from textual documents with emfd.')
 
 # Define Input Document
 parser.add_argument('infile', help='Path to input file.')
@@ -60,7 +60,7 @@ elif infile_type == 'txt':
 else:
     print('Input file type not recognized! Must either be CSV for scoring method bow, wordlist, and pat, or TXT for gdelt.ngram')
 
-print("Running eMFDscore")
+print("Running emfd")
 print("Total number of input texts to be scored:", num_docs)
 
 if SCORE_METHOD == 'bow':

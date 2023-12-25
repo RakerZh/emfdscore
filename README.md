@@ -1,40 +1,55 @@
+## A forked emfd from emfdscore
+
+## Improvements
+- compatible with latest spacy and pandas package
+- `score_docs` using column index for scoring
+
+- original one: [emfdscore](https://github.com/medianeuroscience/emfdscore)
+
+
 ## eMFDscore: Extended Moral Foundation Dictionary Scoring for Python 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/) [![Open Source Love png2](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-**eMFDscore** is a library for the fast and flexible extraction of various moral information metrics from textual input data. eMFDscore is built on [spaCy](https://github.com/explosion/spaCy) for faster execution and performs minimal preprocessing consisting of tokenization, syntactic dependency parsing, lower-casing, and stopword/punctuation/whitespace removal. eMFDscore lets users score documents with **multiple Moral Foundations Dictionaries**, provides **various metrics for analyzing moral information**, and extracts **moral patient, agent, and attribute words** related to entities.
+**emfd** is a library for the fast and flexible extraction of various moral information metrics from textual input data. emfd is built on [spaCy](https://github.com/explosion/spaCy) for faster execution and performs minimal preprocessing consisting of tokenization, syntactic dependency parsing, lower-casing, and stopword/punctuation/whitespace removal. eMFDscore lets users score documents with **multiple Moral Foundations Dictionaries**, provides **various metrics for analyzing moral information**, and extracts **moral patient, agent, and attribute words** related to entities.
     
 When using eMFDscore, please consider giving this repository a star (top right corner) and citing the following article:  
 Hopp, F. R., Fisher, J. T., Cornell, D., Huskey, R., & Weber, R. (2020). The extended Moral Foundations Dictionary (eMFD): Development and applications of a crowd-sourced approach to extracting moral intuitions from text. _Behavior Research Methods_, https://doi.org/10.3758/s13428-020-01433-0 
 
 eMFDscore is dual-licensed under GNU GENERAL PUBLIC LICENSE 3.0, which permits the non-commercial use, distribution, and modification of the eMFDscore package. Commercial use of the eMFDscore requires an [application](https://forms.gle/RSKzZ2DvDyaprfeE8).
 
+## Before install
+
+install spacy and en_core_web_sm
+- see [spacy usage](https://spacy.io/usage)
+
 ## Install 
-eMFDscore requires a Python installation (v3.7+). If your machine does not have Python installed, we recommend installing Python by downloading and installing either [Anaconda or Miniconda](https://docs.conda.io/projects/continuumio-conda/en/latest/user-guide/install/index.html) for your OS.
-
-For best practises, we recommend installing eMFDscore into a virtual conda environment. Hence, you should first create a virtual environment by executing the following command in your terminal:
-
-```
-$ conda create -n emfd python=3.7
-```
-
-Once Anaconda/Miniconda is installed activate the env via:
-
-```
-$ source activate emfd
-```
-
-Next, you must install spaCy, which is the main natural language processing backend that eMFDscore is built on:
-
-```
-$ conda install -c conda-forge spacy
-$ python -m spacy download en_core_web_sm
-``` 
-
-Finally, you can install eMFDscore by copying, pasting, and executing the following command: 
 
 `
-pip install https://github.com/medianeuroscience/emfdscore/archive/master.zip
+pip install emfd
 `
+
+## Usage
+- emfd
+```python
+import pandas as pd
+from emfdscore.scoring import score_docs
+df = pd.read_csv("your_data_set.csv")
+num_docs = len(df)
+DICT_TYPE = 'emfd'
+PROB_MAP = 'all' # or single
+SCORE_METHOD = 'bow' # or more options
+OUT_METRICS = 'sentiment' # or vice-virtue
+OUT_CSV_PATH = './your_output.csv'
+column_index = 0
+df = score_docs(df,DICT_TYPE,PROB_MAP,SCORE_METHOD,OUT_METRICS,num_docs,column_index)
+df.to_csv(OUT_CSV_PATH, index=False)
+```
+
+
+## Future
+- polars implementations
+- vectorized operations
+
 
 ### eMFDscore in Google Colaboratory
 
@@ -44,17 +59,10 @@ eMFDscore can also be run in [google colab](https://colab.research.google.com/no
 !pip install -U pip setuptools wheel
 !pip install -U spacy
 !python -m spacy download en_core_web_sm
-!pip install git+https://github.com/medianeuroscience/emfdscore.git
+!pip install emfd
 ```
 
-You can then use eMFDscore as a python library as documented in our [tutorial](https://github.com/medianeuroscience/emfdscore/blob/master/eMFDscore_Tutorial.ipynb). 
-
 ## Usage 
-Please refer to this [tutorial](https://github.com/medianeuroscience/emfdscore/blob/master/eMFDscore_Tutorial.ipynb) to learn how to use eMFDscore. 
-
-If you are using the eMFD within the [Global Database of Events, Language, and Tone (GDELT)](https://blog.gdeltproject.org/examining-trends-in-moral-news-framing-across-a-decade-of-television-coverage/) please read the following [documentation](https://github.com/medianeuroscience/emfdscore/blob/master/emfd_gdelt_readme.pdf).  
-
-For using the eMFD on shorter texts (e.g., tweets and news headlines), we suggest to apply the eMFD in a [FrameAxis](https://github.com/negar-mokhberian/Moral_Foundation_FrameAxis).
 
 ## Applications 
 The eMFD has been used in the following applications (ordered by date of publication):
