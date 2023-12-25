@@ -3,15 +3,15 @@
 
 - This is forked version from emfdscore.
 
-## Improvements
+## Changes
 - compatible with latest spacy and pandas package
 - `score_docs` using column index for scoring
+- Only support bow score type
 
 ## Before install
 
 - make sure your python version >=3.12 in your environment
-- install spacy and en_core_web_sm
-  see [spacy usage](https://spacy.io/usage)
+- install spacy and en_core_web_sm, see [spacy usage](https://spacy.io/usage)
 
 ## Install 
 
@@ -31,7 +31,7 @@ PROB_MAP = 'all' # or single
 SCORE_METHOD = 'bow' # or more options
 OUT_METRICS = 'sentiment' # or vice-virtue
 OUT_CSV_PATH = './your_output.csv'
-column_index = 0
+column_index = 0 # the columen of content for scoring
 df = score_docs(df,DICT_TYPE,PROB_MAP,SCORE_METHOD,OUT_METRICS,num_docs,column_index)
 df.to_csv(OUT_CSV_PATH, index=False)
 ```
