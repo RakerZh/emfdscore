@@ -1,5 +1,5 @@
 venv/
-.idea
+.idea/
 .pytest_cache
 poetry.lock
 dist/
