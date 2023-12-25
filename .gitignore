@@ -1,7 +1,8 @@
 venv/
-.idea/
+
 .pytest_cache
 poetry.lock
 dist/
+*.idea
 
 __pycache__**
