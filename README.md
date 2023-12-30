@@ -10,8 +10,9 @@
 
 ## Before install
 
-- make sure your python version >=3.12 in your environment
-- install spacy and en_core_web_sm, see [spacy usage](https://spacy.io/usage)
+- make sure your python version >=3.12 in your environment. The another might work
+    - `python3 --version`
+- install `spacy` and `en_core_web_sm`, see [spacy usage](https://spacy.io/usage)
 
 ## Install 
 
@@ -28,16 +29,16 @@ df = pd.read_csv("your_data_set.csv")
 num_docs = len(df)
 DICT_TYPE = 'emfd'
 PROB_MAP = 'all' # or single
-SCORE_METHOD = 'bow' # or more options
+SCORE_METHOD = 'bow' # or more options see documents, only bow tested currently
 OUT_METRICS = 'sentiment' # or vice-virtue
-OUT_CSV_PATH = './your_output.csv'
+OUT_CSV_PATH = './your_file_output.csv'
 column_index = 0 # the columen of content for scoring
 df = score_docs(df,DICT_TYPE,PROB_MAP,SCORE_METHOD,OUT_METRICS,num_docs,column_index)
 df.to_csv(OUT_CSV_PATH, index=False)
 ```
 
 ## Future
-- polars implementations
+- `polars` implementations
 - vectorized operations
 
 ## Other
